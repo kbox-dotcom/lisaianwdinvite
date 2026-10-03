@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f1e8">
+  <meta name="description" content="Dao & Ian — Digital Wedding Invitation">
+  <title>Lisa & Ian | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site-noise" aria-hidden="true"></div>
+
+  <header class="floating-tools" aria-label="Invitation controls">
+    <div class="language-switcher" role="group" aria-label="Language selector">
+      <button type="button" data-lang="th" aria-label="ภาษาไทย">TH</button>
+      <span class="language-divider">|</span>
+      <button type="button" data-lang="en" aria-label="English">EN</button>
+    </div>
+    <button type="button" class="music-control" id="music-toggle" aria-pressed="false" aria-label="Play wedding music">
+      <span class="music-icon" aria-hidden="true">♫</span>
+      <span class="music-label" data-i18n="musicPlay"></span>
+    </button>
+  </header>
+
+  <audio id="wedding-music" loop>
+    <source src="assets/audio/GAVIN.D - A ROCKET TO THE MOON.mp3" type="audio/mpeg">
+  </audio>
+
+  <input type="checkbox" id="open-toggle" hidden>
+
+  <div class="petal petal-1" aria-hidden="true"></div>
+  <div class="petal petal-2" aria-hidden="true"></div>
+  <div class="petal petal-3" aria-hidden="true"></div>
+  <div class="petal petal-4" aria-hidden="true"></div>
+
+  <div class="cover" id="cover">
+    <div class="cover-card">
+      <p class="eyebrow" data-i18n="coverEyebrow">Together with their families</p>
+      <div class="monogram" aria-hidden="true">L&amp;I</div>
+      <h1>
+        <span class="i18n" data-i18n="brideShort">LISA</span>
+        <span class="cover-amp">&amp;</span>
+        <span class="i18n" data-i18n="groomShort">IAN</span>
+      </h1>
+      <div class="ornament"></div>
+      <p class="cover-date" data-i18n="coverDate">Monday · April 5 · 2027</p>
+      <label for="open-toggle" class="open-invitation" id="open-invitation">
+        <span data-i18n="openInvitation">Open Invitation</span>
+      </label>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero section-full" id="home">
+      <div class="hero-inner reveal">
+        <p class="eyebrow" data-i18n="heroKicker">A beautiful beginning</p>
+        <h2>
+          <span>Lisa</span>
+          <span class="hero-amp">&amp;</span>
+          <span>Ian</span>
+        </h2>
+        <p class="hero-sub" data-i18n="heroSub">Invite you to celebrate their wedding</p>
+        <div class="ornament"></div>
+        <p class="hero-sub" data-i18n="location">Phatthalung · Thailand</p>
+      </div>
+      <div class="scroll-cue" data-i18n="scrollCue">Scroll to discover</div>
+    </section>
+
+    <section class="couple section-paper" id="couple">
+      <div class="container">
+        <div class="center reveal">
+          <p class="section-kicker" data-i18n="coupleKicker">The couple</p>
+          <h2 class="section-title" data-i18n="coupleTitle">Two names, one story.</h2>
+          <p class="lead" data-i18n="coupleLead">A celebration of the two people at the heart of this beautiful day.</p>
+        </div>
+        <div class="names-grid">
+          <article class="name-card reveal">
+            <span class="name-role" data-i18n="brideLabel">The Bride</span>
+            <h3 data-i18n="brideName">LISA</h3>
+            <p class="thai-name" data-i18n="brideThai">Rattanaporn Setchana</p>
+          </article>
+          <div class="names-divider" aria-hidden="true">&amp;</div>
+          <article class="name-card reveal">
+            <span class="name-role" data-i18n="groomLabel">The Groom</span>
+            <h3 data-i18n="groomName">IAN</h3>
+            <p class="thai-name" data-i18n="groomThai">Ian James Vincent</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story section-paper" id="story">
+      <div class="container story-grid">
+        <div class="story-photo reveal">
+          <img src="/assets/images/wgrings.png" alt="Lisa and Ian">
+        </div>
+        <div class="story-copy reveal">
+          <p class="section-kicker" data-i18n="storyKicker">Our story</p>
+          <h2 class="section-title" data-i18n="storyTitle">Two hearts,<br>one beautiful chapter.</h2>
+          <p data-i18n="storyP1">loading...</p>
+          <p data-i18n="storyP2">We are delighted to celebrate this beautiful new chapter surrounded by everyone.</p>
+          <div class="signature" data-i18n="signature">With love, Lisa &amp; Ian</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="date-section section-ivory" id="date">
+      <div class="container center">
+        <p class="section-kicker reveal" data-i18n="saveDate">Save the date</p>
+        <div class="date-wrap reveal">
+          <div class="month" data-i18n="month">April</div>
+          <div class="day">5</div>
+          <div class="year" data-i18n="year">2027</div>
+          <div class="date-note" data-i18n="dateDay">Monday</div>
+          <div class="ornament"></div>
+          <div class="date-note" data-i18n="dateNote">A day we will remember forever</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="countdown-section section-paper" id="countdown-section">
+      <div class="container center">
+        <p class="section-kicker reveal" data-i18n="countdownKicker">The countdown</p>
+        <h2 class="section-title reveal" data-i18n="countdownTitle">Until we say “I do”</h2>
+        <p class="lead reveal" data-i18n="countdownLead">Counting every moment until our wedding day.</p>
+        <div class="countdown-grid reveal" id="countdown" data-target="2027-04-05T17:00:00+07:00" aria-live="polite">
+          <div class="countdown-unit"><span class="countdown-value" data-unit="days">000</span><span class="countdown-label" data-i18n="days">Days</span></div>
+          <div class="countdown-unit"><span class="countdown-value" data-unit="hours">00</span><span class="countdown-label" data-i18n="hours">Hours</span></div>
+          <div class="countdown-unit"><span class="countdown-value" data-unit="minutes">00</span><span class="countdown-label" data-i18n="minutes">Minutes</span></div>
+          <div class="countdown-unit"><span class="countdown-value" data-unit="seconds">00</span><span class="countdown-label" data-i18n="seconds">Seconds</span></div>
+        </div>
+        <p class="countdown-complete" id="countdown-complete" hidden data-i18n="countdownComplete">Today is the day. Welcome to our celebration.</p>
+      </div>
+    </section>
+
+    <section class="gallery section-paper" id="gallery">
+      <div class="container">
+        <div class="center reveal">
+          <p class="section-kicker" data-i18n="galleryKicker">A glimpse of us</p>
+          <h2 class="section-title" data-i18n="galleryTitle">Moments worth keeping.</h2>
+          <p class="lead" data-i18n="galleryLead">A small collection of moments from our journey together.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item g1 reveal"><img src="/assets/images/di02_n.jpg" alt="Wedding couple"></figure>
+          <figure class="gallery-item g2 reveal"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Wedding flowers"></figure>
+          <figure class="gallery-item g3 reveal"><img src="/assets/images/di03_n.jpg" alt="Couple portrait"></figure>
+          <figure class="gallery-item g4 reveal"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Wedding celebration"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="details section-ivory" id="details">
+      <div class="container">
+        <div class="center reveal">
+          <p class="section-kicker" data-i18n="celebrationKicker">The celebration</p>
+          <h2 class="section-title" data-i18n="celebrationTitle">Join us in Phatthalung, TH.</h2>
+          <p class="lead" data-i18n="celebrationLead">We cannot wait to celebrate this special day with you.</p>
+        </div>
+        <div class="container center">
+        <p class="section-kicker reveal" data-i18n="day">TIMELINE</p>       
+        <div class="timeline">
+          <div class="time-row reveal"><div class="time-copy"><div class="time" data-i18n="time1">8:08 AM</div><div class="event" data-i18n="guestArrival">Khan Maak Procession</div><p data-i18n="welcome">loading.</p></div></div>
+          <div class="time-row reveal"><div class="time-copy"><div class="time" data-i18n="time2">9:09 AM</div><div class="event" data-i18n="ceremony">Wedding Ceremony</div><p data-i18n="foreverBegins">The moment our forever begins.</p></div></div>
+          <div class="time-row reveal"><div class="time-copy"><div class="time" data-i18n="time3">6:30 PM</div><div class="event" data-i18n="dinner">Evening Celebration &amp; Live Music</div><p data-i18n="goodFood">food, music &amp; celebration.</p></div></div>
+          <div class="time-row reveal"><div class="time-copy"><div class="time" data-i18n="allDay">All day long</div><div class="event" data-i18n="endOfEvening">Well-Wishes &amp; Dining</div><p data-i18n="nextMemory">Memory.</p></div></div>
+        </div>
+      </div>
+      </div>
+    </section>
+    
+    <section class="wishes section-ivory" id="wishes">
+      <div class="container">
+        <div class="center reveal">
+          <p class="section-kicker" data-i18n="wishesKicker">Guestbook</p>
+          <h2 class="section-title" data-i18n="wishesTitle">Leave us a little love.</h2>
+          <p class="lead" data-i18n="wishesLead">Share a wish, a memory, or a few words for the couple. Your message will become part of our wedding memories.</p>
+        </div>
+
+        <div class="wishes-layout">
+          <form class="wish-form reveal" id="wish-form" novalidate>
+            <label class="field"><span data-i18n="wishNameLabel">Your name</span><input id="wish-name" name="name" type="text" maxlength="80" required autocomplete="name" placeholder="Your name" data-i18n-placeholder="wishPlaceholderName"></label>
+            <label class="field"><span data-i18n="wishMessageLabel">Your message</span><textarea id="wish-message" name="message" maxlength="500" rows="6" required placeholder="Write your wishes..." data-i18n-placeholder="wishPlaceholderMessage"></textarea></label>
+            <div class="form-row"><span class="char-count" id="char-count">0 / 999</span><button class="button primary" type="submit" id="wish-submit"><span data-i18n="wishSubmit">Send your wishes</span></button></div>
+            <p class="form-status" id="wish-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="wish-list-wrap reveal">
+            <div class="wish-list-head"><span data-i18n="latestWishes">Latest wishes</span><span class="wish-count" id="wish-count">0</span></div>
+            <div class="wish-list" id="wish-list" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta section-ivory" id="rsvp">
+      <div class="container reveal center">
+        <p class="section-kicker" data-i18n="beforeDay">Before the big day</p>
+        <h2 class="section-title" data-i18n="hopeThere">We hope you'll be there.</h2>
+        <p class="lead" data-i18n="rsvpLead">Your presence would make our celebration even more meaningful. Please let us know if you can join us.</p>
+        <div class="cta-buttons">
+          <a class="button" href="https://maps.app.goo.gl/TdqtcqQXXJu2aYjw8" target="_blank" rel="noopener"><span data-i18n="viewLocation">View Location</span></a>
+          <!-- <a class="button primary" href="https://forms.google.com/" target="_blank" rel="noopener"><span data-i18n="rsvp">RSVP</span></a> -->
+          <a class="button" href="https://calendar.google.com/" target="_blank" rel="noopener"><span data-i18n="calendar">Add to Calendar</span></a>
+        </div>
+        <div class="ornament"></div>
+        <p class="section-kicker" data-i18n="hashtag">Our hashtag</p>
+        <div class="hashtag">#LisaAndIan</div>
+      </div>
+    </section>
+
+    <section class="farewell" id="farewell">
+      <div class="container reveal center">
+        <p class="section-kicker" data-i18n="thankYou">Thank you</p>
+        <h2 data-i18n="farewellTitle">Thank you for<br>being part of our story.</h2>
+        <p data-i18n="farewellLead">Thank you for celebrating this beautiful beginning with us. We look forward to making memories together.</p>
+        <div class="initials">LISA &amp; IAN</div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span data-i18n="footer">Lisa &amp; Ian · April 5, 2027 · Phatthalung, Thailand</span></footer>
+
+  <script src="js/config.js"></script>
+  <!-- <script src="js/i18n.js"></script> -->
+  <script src="js/countdown.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/guestbook.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
