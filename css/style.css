@@ -70,7 +70,7 @@ section { position:relative; padding:110px 22px; }
 .section-paper .ornament::after { background:var(--paper); }
 
 .hero { display:grid; place-items:center; text-align:center; overflow:hidden; }
-.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(246,241,232,.08),rgba(246,241,232,.78)),url('di01_n.jpg') center/cover; filter:saturate(.72); transform:scale(1.05); animation:heroZoom 18s ease-in-out infinite alternate; z-index:-2; }
+.hero::before { content:""; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(246,241,232,.08),rgba(246,241,232,.78)),url('assets/images/di01_n.jpgg') center/cover; filter:saturate(.72); transform:scale(1.05); animation:heroZoom 18s ease-in-out infinite alternate; z-index:-2; }
 .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(246,241,232,.15),var(--ivory) 94%); z-index:-1; }
 @keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
 .hero-inner { padding-top:12vh; }
