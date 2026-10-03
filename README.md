@@ -1,4 +1,4 @@
-# Lisa & Ian — Wedding Invitation
+# Rattanaporn & Ian — Digital Wedding Invitation
 
 A clean, expandable wedding-invitation project split into HTML, CSS, JavaScript, assets and backend configuration.
 

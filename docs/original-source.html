@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f1e8">
+  <meta name="description" content="Dao & Ian — Digital Wedding Invitation">
+  <title>Dao & Ian | Digital Wedding Invitation</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap');
+
+    :root {
+      --ivory: #f6f1e8;
+      --paper: #fbf8f2;
+      --ink: #2d2924;
+      --muted: #766f66;
+      --gold: #b5965a;
+      --gold-soft: #d8c49a;
+      --line: rgba(181, 150, 90, .38);
+      --shadow: 0 24px 70px rgba(45, 41, 36, .12);
+      --serif: 'IBM Plex Sans Thai', Georgia, serif;
+      --sans: 'Sriracha', Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--ink);
+
+      .ibm-plex-sans-thai-regular {
+        font-family: "IBM Plex Sans Thai", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    /* ---------- Opening screen ---------- */
+    .cover {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(216, 196, 154, .20), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(181, 150, 90, .12), transparent 35%),
+        var(--ivory);
+      transition: opacity 1s ease, visibility 1s ease, transform 1s ease;
+    }
+
+    .cover-card {
+      position: relative;
+      width: min(680px, 100%);
+      min-height: min(760px, 88vh);
+      padding: 56px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: rgba(251, 248, 242, .72);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cover-card:before,
+    .cover-card:after {
+      content: "";
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border: 1px solid rgba(181, 150, 90, .20);
+      border-radius: 50%;
+    }
+
+    .cover-card:before {
+      top: -90px;
+      left: -90px
+    }
+
+    .cover-card:after {
+      bottom: -90px;
+      right: -90px
+    }
+
+    .eyebrow {
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .monogram {
+      width: 86px;
+      height: 86px;
+      margin: 28px 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      font: 600 2rem var(--serif);
+      color: var(--gold);
+      position: relative;
+    }
+
+    .monogram:before,
+    .monogram:after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .monogram:before {
+      top: -4px
+    }
+
+    .monogram:after {
+      bottom: -4px
+    }
+
+    .cover h1 {
+      margin: 0;
+      font: 500 clamp(4rem, 13vw, 7.2rem)/.90 var(--serif);
+      letter-spacing: -.045em;
+    }
+
+    .cover-date {
+      margin: 26px 0 42px;
+      font-size: .76rem;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .open-invitation {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 25px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      font-size: .68rem;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transition: .35s ease;
+    }
+
+    .open-invitation:after {
+      content: "→";
+      font-size: 1rem;
+      transition: transform .35s ease;
+    }
+
+    .open-invitation:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .open-invitation:hover:after {
+      transform: translateX(5px)
+    }
+
+    /* CSS-only opening interaction */
+    #open-toggle {
+      display: none
+    }
+
+    #open-toggle:checked~.cover {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
+    /* ---------- Decorative atmosphere ---------- */
+    .petal {
+      position: fixed;
+      z-index: 1;
+      width: 8px;
+      height: 14px;
+      border: 1px solid rgba(181, 150, 90, .32);
+      border-radius: 100% 0 100% 0;
+      pointer-events: none;
+      opacity: .45;
+      animation: petalFloat 13s linear infinite;
+    }
+
+    .petal:nth-of-type(1) {
+      left: 7%;
+      top: 22%;
+      animation-delay: -4s;
+      transform: rotate(25deg)
+    }
+
+    .petal:nth-of-type(2) {
+      left: 88%;
+      top: 35%;
+      animation-delay: -8s;
+      transform: rotate(90deg);
+      animation-duration: 16s
+    }
+
+    .petal:nth-of-type(3) {
+      left: 74%;
+      top: 78%;
+      animation-delay: -2s;
+      animation-duration: 14s
+    }
+
+    .petal:nth-of-type(4) {
+      left: 17%;
+      top: 76%;
+      animation-delay: -10s;
+      animation-duration: 18s
+    }
+
+    @keyframes petalFloat {
+      0% {
+        transform: translate3d(0, 20px, 0) rotate(0)
+      }
+
+      50% {
+        transform: translate3d(24px, -45px, 0) rotate(130deg)
+      }
+
+      100% {
+        transform: translate3d(-18px, -100px, 0) rotate(260deg);
+        opacity: 0
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 2
+    }
+
+    section {
+      position: relative;
+      padding: 110px 22px
+    }
+
+    .container {
+      width: min(1080px, 100%);
+      margin: auto
+    }
+
+    /* ---------- Typography ---------- */
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: .66rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0 0 22px;
+      font: 500 clamp(2.8rem, 8vw, 5rem)/.92 var(--serif);
+      letter-spacing: -.035em;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .center {
+      text-align: center
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 100vh;
+      padding: 40px 22px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(246, 241, 232, .08), rgba(246, 241, 232, .78)),
+        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85') center/cover;
+      filter: saturate(.72);
+      transform: scale(1.05);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+      z-index: -2;
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(246, 241, 232, .15), var(--ivory) 94%);
+      z-index: -1;
+    }
+
+    @keyframes heroZoom {
+      from {
+        transform: scale(1.05)
+      }
+
+      to {
+        transform: scale(1.12)
+      }
+    }
+
+    .hero-inner {
+      padding-top: 12vh
+    }
+
+    .hero h2 {
+      margin: 18px 0 30px;
+      font: 400 clamp(4.4rem, 12vw, 8rem)/.90 var(--serif);
+      letter-spacing: -.055em;
+    }
+
+    .amp {
+      display: block;
+      margin: 12px 0;
+      font: italic 400 clamp(2rem, 7vw, 4rem) var(--serif);
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-cue:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 42px;
+      margin: 10px auto 0;
+      background: var(--gold);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+
+      0%,
+      100% {
+        transform: scaleY(.3);
+        transform-origin: top
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top
+      }
+    }
+
+    /* ---------- Gold rule ---------- */
+    .ornament {
+      width: min(300px, 70%);
+      height: 1px;
+      margin: 30px auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      position: relative;
+    }
+
+    .ornament:after {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -53%);
+      padding: 0 12px;
+      background: var(--ivory);
+      color: var(--gold);
+      font-size: .72rem;
+    }
+
+    /* ---------- Story ---------- */
+    .story {
+      background: var(--paper)
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .story-photo {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .story-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .story-photo:hover img {
+      transform: scale(1.04)
+    }
+
+    .story-copy p {
+      color: var(--muted);
+      margin: 0 0 18px
+    }
+
+    .signature {
+      margin-top: 30px;
+      font: italic 2rem var(--serif);
+      color: var(--gold);
+    }
+
+    /* ---------- Date ---------- */
+    .date-section {
+      text-align: center;
+      background: var(--ivory);
+      overflow: hidden;
+    }
+
+    .date-wrap {
+      position: relative;
+      width: min(720px, 100%);
+      margin: auto;
+      padding: 50px 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .month {
+      font-size: 1.5rem;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .day {
+      margin: 10px 0 0px;
+      font: 500 clamp(7rem, 10vw, 12rem)/.72 var(--serif);
+      letter-spacing: 0em;
+    }
+
+    .year {
+      font: 400 clamp(1rem, 7vw, 4rem)/1 var(--serif);
+      color: var(--muted);
+    }
+
+    .date-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: .9rem;
+      letter-spacing: .12em;
+    }
+
+    /* ---------- Gallery ---------- */
+    .gallery {
+      background: var(--paper)
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 55px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      background: #e9e2d7
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s cubic-bezier(.2, .7, .2, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06)
+    }
+
+    .g1 {
+      grid-column: 1/8;
+      aspect-ratio: 1.25
+    }
+
+    .g2 {
+      grid-column: 8/13;
+      aspect-ratio: .82
+    }
+
+    .g3 {
+      grid-column: 1/5;
+      aspect-ratio: .86
+    }
+
+    .g4 {
+      grid-column: 5/13;
+      aspect-ratio: 1.35
+    }
+
+    /* ---------- Details ---------- */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .detail-card {
+      background: var(--paper);
+      padding: 42px 28px;
+      text-align: center;
+    }
+
+    .detail-icon {
+      font: 1.7rem var(--serif);
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .detail-card h3 {
+      margin: 0 0 10px;
+      font: 500 2rem var(--serif);
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    /* ---------- Timeline ---------- */
+    .timeline {
+      position: relative;
+      max-width: 760px;
+      margin: 60px auto 0;
+    }
+
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin: 0 0 48px;
+    }
+
+    .time-row:nth-child(odd) .time-copy {
+      text-align: right
+    }
+
+    .time-row:nth-child(even) .time-copy {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .time-row:nth-child(even) {
+      text-align: left
+    }
+
+    .time {
+      font: 500 1.7rem var(--serif);
+      color: var(--gold);
+    }
+
+    .event {
+      font-size: .75rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .time-copy p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* ---------- Dress code ---------- */
+    .dress {
+      background: var(--paper);
+    }
+
+    .swatches {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .swatch {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(45, 41, 36, .12);
+    }
+
+    .swatch:nth-child(1) {
+      background: #d9d0c2
+    }
+
+    .swatch:nth-child(2) {
+      background: #b6a48b
+    }
+
+    .swatch:nth-child(3) {
+      background: #8f8270
+    }
+
+    .swatch:nth-child(4) {
+      background: #4e4841
+    }
+
+    .dress-note {
+      color: var(--muted);
+      font-size: .88rem
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      padding: 125px 22px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0, rgba(181, 150, 90, .13), transparent 45%),
+        var(--ivory);
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 180px;
+      padding: 13px 20px;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      font-size: .66rem;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      transition: .35s ease;
+    }
+
+    .button.primary {
+      background: var(--gold);
+      color: white;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(45, 41, 36, .12);
+    }
+
+    /* ---------- Farewell ---------- */
+    .farewell {
+      min-height: 75vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .farewell .section-kicker {
+      color: var(--gold-soft)
+    }
+
+    .farewell h2 {
+      margin: 10px 0 20px;
+      font: 500 clamp(3.2rem, 10vw, 6.8rem)/.86 var(--serif);
+      letter-spacing: -.045em;
+    }
+
+    .farewell p {
+      max-width: 550px;
+      margin: auto;
+      color: rgba(251, 248, 242, .66);
+      font-size: .9rem;
+    }
+
+    .initials {
+      margin-top: 40px;
+      font: italic 2.2rem var(--serif);
+      color: var(--gold-soft);
+    }
+
+    footer {
+      padding: 22px;
+      text-align: center;
+      background: #24211e;
+      color: rgba(251, 248, 242, .45);
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- Scroll-driven reveal enhancement ---------- */
+    @supports (animation-timeline:view()) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 28%;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(28px)
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0)
+        }
+      }
+    }
+
+    /* ---------- Language switcher ---------- */
+    .language-switcher {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 130;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 8px;
+      border: 1px solid rgba(181, 150, 90, .55);
+      background: rgba(251, 248, 242, .84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(45, 41, 36, .08)
+    }
+
+    .language-switcher button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 5px 7px;
+      font: 500 .61rem var(--sans);
+      letter-spacing: .16em;
+      cursor: pointer;
+      transition: .28s ease
+    }
+
+    .language-switcher button:hover {
+      color: var(--ink)
+    }
+
+    .language-switcher button.active {
+      background: var(--gold);
+      color: white
+    }
+
+    .language-divider {
+      color: var(--gold);
+      font-size: .65rem;
+      opacity: .75
+    }
+
+    .i18n {
+      transition: opacity .22s ease, transform .22s ease
+    }
+
+    body.language-changing .i18n {
+      opacity: 0;
+      transform: translateY(3px)
+    }
+
+    @media (max-width:760px) {
+      section {
+        padding: 82px 18px
+      }
+
+      .language-switcher {
+        top: 12px;
+        right: 12px;
+        padding: 4px 6px
+      }
+
+      .language-switcher button {
+        padding: 4px 6px;
+        font-size: .57rem
+      }
+
+      .cover-card {
+        min-height: 78vh;
+        padding: 45px 22px
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .story-photo {
+        aspect-ratio: 1/1
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr
+      }
+
+      .timeline:before {
+        left: 8px
+      }
+
+      .time-row,
+      .time-row:nth-child(even) {
+        display: block;
+        padding-left: 30px;
+        margin-bottom: 38px;
+        text-align: left;
+      }
+
+      .time-row:nth-child(odd) .time-copy {
+        text-align: left
+      }
+
+      .time-row:nth-child(even) .time-copy {
+        display: block;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4 {
+        grid-column: auto;
+        aspect-ratio: 1/1
+      }
+
+      .g1 {
+        grid-column: 1/3
+      }
+
+      .g4 {
+        grid-column: 1/3
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *:before,
+      *:after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="language-switcher" role="group" aria-label="Language selector">
+    <button type="button" data-lang="th" aria-label="ภาษาไทย">TH</button>
+    <span class="language-divider">|</span>
+    <button type="button" data-lang="en" aria-label="English">EN</button>
+  </div>
+
+  <!-- CSS-only opening toggle -->
+  <input type="checkbox" id="open-toggle">
+  ั
+  <!-- Ambient floating botanical/petal details -->
+  <span class="petal"></span>
+  <span class="petal"></span>
+  <span class="petal"></span>
+  <span class="petal"></span>
+
+  <!-- =========================================================
+     OPENING CEREMONY
+     ========================================================= -->
+  <div class="cover">
+    <div class="cover-card">
+      <div class="eyebrow"><span class="i18n" data-i18n="coverEyebrow">Together with their families</span></div>
+
+      <div class="monogram">D&I</div>
+
+      <h1 class="i18n" data-i18n="DI">DAO<br>&amp; IAN</h1>
+
+      <div class="ornament"></div>
+
+      <div class="cover-date"><span class="i18n" data-i18n="coverDate">Monday · April 5 · 2027</span></div>
+
+      <label for="open-toggle" class="open-invitation">
+        <span class="i18n" data-i18n="openInvitation">Open Invitation</span>
+      </label>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- =======================================================
+       HERO
+       ======================================================= -->
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <div class="eyebrow"><span class="i18n" data-i18n="heroKicker">A beautiful beginning</span></div>
+        <h2 class="i18n" data-i18n="DI">Dao <span class="amp">&amp;</span> Ian</h2>
+        <div class="hero-sub"><span class="i18n" data-i18n="heroSub">Invite you to celebrate their wedding</span></div>
+        <div class="ornament"></div>
+        <div class="hero-sub"><span class="i18n" data-i18n="location">Phatthalung · Thailand</span></div>
+      </div>
+      <div class="scroll-cue"><span class="i18n" data-i18n="scrollCue">Scroll to discover</span></div>
+    </section>
+
+    <!-- =======================================================
+       STORY
+       ======================================================= -->
+    <section class="story">
+      <div class="container story-grid">
+        <div class="story-photo reveal">
+          <!-- Replace with your own couple photo -->
+          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=85"
+            alt="Dao and Ian">
+        </div>
+
+        <div class="story-copy reveal">
+          <div class="section-kicker"><span class="i18n" data-i18n="storyKicker">Our story</span></div>
+          <h2 class="section-title"><span class="i18n" data-i18n="storyTitle">Two hearts,<br>one beautiful
+              chapter.</span></h2>
+          <p>
+            <span class="i18n" data-i18n="storyP1">Some moments quietly become memories. Some memories become stories.
+              And some stories become the beginning of a lifetime together.</span>
+          </p>
+          <p>
+            <span class="i18n" data-i18n="storyP2">Emma and James are delighted to celebrate this beautiful new chapter
+              surrounded by the people who have made their journey so meaningful.</span>
+          </p>
+          <div class="signature"><span class="i18n" data-i18n="signature">With love, Emma &amp; James</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       DATE CENTERPIECE
+       ======================================================= -->
+    <section class="date-section">
+      <div class="container">
+        <div class="section-kicker reveal"><span class="i18n" data-i18n="saveDate">Save the date</span></div>
+        <div class="date-wrap reveal">
+          <div class="month"><span class="i18n" data-i18n="month">April</span></div>
+          <div class="day">5</div>
+          <div class="year"><span class="i18n" data-i18n="year">2027</span></div>
+          <div class="date-note"><span class="i18n" data-i18n="dateDay">Monday</span></div>
+          <div class="ornament"></div>
+          <div class="date-note"><span class="i18n" data-i18n="dateNote">· A day we will remember forever</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       GALLERY
+       ======================================================= -->
+    <section class="gallery">
+      <div class="container">
+        <div class="center reveal">
+          <div class="section-kicker"><span class="i18n" data-i18n="galleryKicker">A glimpse of us</span></div>
+          <h2 class="section-title"><span class="i18n" data-i18n="galleryTitle">Moments worth keeping.</span></h2>
+          <p class="lead">
+            <span class="i18n" data-i18n="galleryLead">A small collection of moments from our journey together.</span>
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- Replace each image URL with your own photos -->
+          <div class="gallery-item g1 reveal">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=85"
+              alt="Wedding couple">
+          </div>
+          <div class="gallery-item g2 reveal">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=85"
+              alt="Wedding flowers">
+          </div>
+          <div class="gallery-item g3 reveal">
+            <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=900&q=85"
+              alt="Couple portrait">
+          </div>
+          <div class="gallery-item g4 reveal">
+            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=85"
+              alt="Wedding celebration">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       TIMELINE
+       ======================================================= -->
+
+    <section class="date-section">
+      <div class="container">
+        <div class="center reveal">
+          <div class="section-kicker"><span class="i18n" data-i18n="celebrationKicker">The celebration</span></div>
+          <h2 class="section-title"><span class="i18n" data-i18n="celebrationTitle">Join us in Phatthalung.</span></h2>
+          <p class="lead">
+            <span class="i18n" data-i18n="celebrationLead">We cannot wait to celebrate this special day with you.</span>
+          </p>
+        </div>
+        <div class="container">
+          <div class="center reveal">
+            <div class="section-kicker"><span class="i18n" data-i18n="day">TIME LINE</span></div>
+          </div>
+
+          <div class="timeline">
+            <div class="time-row reveal">
+              <div class="time-copy">
+                <div class="time"><span class="i18n" data-i18n="time1">08:08 AM</span></div>
+                <div class="event"><span class="i18n" data-i18n="guestArrival">Khan Maak Procession</span></div>
+                <p><span class="i18n" data-i18n="welcome">Welcome, mingle &amp; settle in.</span></p>
+              </div>
+            </div>
+
+            <div class="time-row reveal">
+              <div class="time-copy">
+                <div class="time"><span class="i18n" data-i18n="time2">09:09 AM</span></div>
+                <div class="event"><span class="i18n" data-i18n="ceremony">Wedding Ceremony</span></div>
+                <p><span class="i18n" data-i18n="foreverBegins">The moment our forever begins.</span></p>
+              </div>
+            </div>
+
+            <div class="time-row reveal">
+              <div class="time-copy">
+                <div class="time"><span class="i18n" data-i18n="time3">6:30 PM</span></div>
+                <div class="event"><span class="i18n" data-i18n="dinner">Dinner &amp; Celebration</span></div>
+                <p><span class="i18n" data-i18n="goodFood">Good food, music &amp; celebration.</span></p>
+              </div>
+            </div>
+
+            <div class="time-row reveal">
+              <div class="time-copy">
+                <div class="time"><span class="i18n" data-i18n="allDay">All day long</span></div>
+                <div class="event"><span class="i18n" data-i18n="endOfEvening">End of the Evening</span></div>
+                <p><span class="i18n" data-i18n="nextMemory">Until our next beautiful memory.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+       DRESS CODE
+       ======================================================= -->
+    <!-- <section class="dress">
+      <div class="container center">
+        <div class="section-kicker reveal"><span class="i18n" data-i18n="dressCode">Dress code</span></div>
+        <h2 class="section-title reveal"><span class="i18n" data-i18n="dressTitle">Elegant Earth Tones.</span></h2>
+        <p class="lead reveal">
+          <span class="i18n" data-i18n="dressLead">We would love for our guests to dress in warm, neutral and earthy
+            tones.</span>
+        </p>
+
+        <div class="swatches reveal" aria-label="Suggested dress code colors">
+          <span class="swatch" title="Light Taupe"></span>
+          <span class="swatch" title="Warm Beige"></span>
+          <span class="swatch" title="Mocha"></span>
+          <span class="swatch" title="Deep Brown"></span>
+        </div>
+
+        <div class="dress-note reveal">
+          <span class="i18n" data-i18n="dressNote">Formal / Semi-formal · Comfortable elegance</span>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- =======================================================
+       LOCATION + RSVP
+       ======================================================= -->
+    <section class="cta">
+      <div class="container reveal">
+        <div class="section-kicker"><span class="i18n" data-i18n="beforeDay">Before the big day</span></div>
+        <h2 class="section-title"><span class="i18n" data-i18n="hopeThere">We hope you'll be there.</span></h2>
+        <p class="lead">
+          <span class="i18n" data-i18n="rsvpLead">Your presence would make our celebration even more meaningful.
+            Please let us know if you can join us.</span>
+        </p>
+
+        <div class="cta-buttons">
+          <!-- Replace href with your real Google Maps link -->
+          <a class="button" href="https://maps.google.com/" target="_blank" rel="noopener">
+            <span class="i18n" data-i18n="viewLocation">View Location</span>
+          </a>
+
+          <!-- Replace href with your real Google Form / RSVP page -->
+          <a class="button primary" href="https://forms.google.com/" target="_blank" rel="noopener">
+            RSVP
+          </a>
+
+          <!-- Replace the URL details with your real calendar event -->
+          <a class="button" href="https://calendar.google.com/" target="_blank" rel="noopener">
+            <span class="i18n" data-i18n="calendar">Add to Calendar</span>
+          </a>
+        </div>
+
+        <div class="ornament"></div>
+
+        <div class="section-kicker"><span class="i18n" data-i18n="hashtag">Our hashtag</span></div>
+        <div style="font:500 2rem var(--serif);color:var(--gold);">
+          #DaoandIan
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+       FAREWELL
+       ======================================================= -->
+    <section class="farewell">
+      <div class="container reveal">
+        <div class="section-kicker"><span class="i18n" data-i18n="thankYou">Thank you</span></div>
+        <h2><span class="i18n" data-i18n="farewellTitle">Thank you for<br>being part of our story.</span></h2>
+        <p>
+          <span class="i18n" data-i18n="farewellLead">Thank you for celebrating this beautiful beginning with us.
+            We look forward to making memories together.</span>
+        </p>
+        <div class="initials">Dao &amp; Ian</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span class="i18n" data-i18n="footer">Dao &amp; Ian · April 5, 2027 · Phatthalung, Thailand</span>
+  </footer>
+
+
+  <script>
+    // =========================================================
+    // LANGUAGE SWITCHER
+    // English = en | Thai = th
+    // =========================================================
+    const translations = {
+      coverEyebrow: { en: "Together with their families", th: "ขอเรียนเชิญร่วมเป็นเกียรติในพิธีมงคลสมรส" },
+      DI: { en: "DAO<br>&amp;<br>IAN", th: "ดาว<br>&amp;<br>เอียน" },
+      coverDate: { en: "Monday · April 5 · 2027", th: "วันจันทร์ · 5 เมษายน · 2570" },
+      openInvitation: { en: "Open Invitation", th: "เปิดคำเชิญ" },
+      heroKicker: { en: "A beautiful beginning", th: "จุดเริ่มต้นที่งดงาม" },
+      heroSub: { en: "Invite you to celebrate their wedding", th: "ขอเชิญคุณร่วมเฉลิมฉลองวันสำคัญของเรา" },
+      location: { en: "Phatthalung · Thailand", th: "พัทลุง · ประเทศไทย" },
+      scrollCue: { en: "Scroll to discover", th: "เลื่อนลงเพื่อค้นพบเรื่องราว" },
+      storyKicker: { en: "Our story", th: "เรื่องราวของเรา" },
+      storyTitle: { en: "Two hearts,<br>one beautiful chapter.", th: "สองหัวใจ<br>กับบทหนึ่งที่งดงาม" },
+      storyP1: { en: "Some moments quietly become memories. Some memories become stories. And some stories become the beginning of a lifetime together.", th: "บางช่วงเวลาค่อยๆ กลายเป็นความทรงจำ บางความทรงจำกลายเป็นเรื่องราว และบางเรื่องราวก็กลายเป็นจุดเริ่มต้นของชีวิตที่เราจะเดินไปด้วยกัน" },
+      storyP2: { en: "We are delighted to celebrate this beautiful new chapter surounded by the people who have made their journey so meaningful.", th: "เราทั้งสองยินดีเป็นอย่างยิ่งที่จะได้เฉลิมฉลองบทใหม่อันงดงามนี้ ท่ามกลางผู้คนที่ทำให้เส้นทางของพวกเขามีความหมายเสมอมา" },
+      signature: { en: "With love, Dao & Ian", th: "ด้วยรัก, ดาว & เอียน" },
+      saveDate: { en: "Save the date", th: "โปรดจดจำวันที่แสนพิเศษ" },
+      month: { en: "April", th: "เมษายน" },
+      year: { en: "2027", th: "2570" },
+      dateDay: { en: "Monday", th: "วันจันทร์" },
+      dateNote: { en: "· A day we will remember forever ·", th: "· วันที่เราจะจดจำตลอดไป ·" },
+      galleryKicker: { en: "A glimpse of us", th: "เรื่องราวของเราผ่านภาพความทรงจำ" },
+      galleryTitle: { en: "Moments worth keeping.", th: "ช่วงเวลาที่อยากเก็บไว้ตลอดไป" },
+      galleryLead: { en: "A small collection of moments from our journey together.", th: "ภาพเล็ก ๆ ที่รวบรวมช่วงเวลาสำคัญจากเส้นทางของเราสองคน" },
+      celebrationKicker: { en: "The celebration", th: "งานเฉลิมฉลอง" },
+      celebrationTitle: { en: "Join us in Phatthalung.", th: "แล้วเจอกันที่พัทลุง" },
+      celebrationLead: { en: "We cannot wait to celebrate this special day with you.", th: "เราอดใจรอไม่ไหวที่จะได้ฉลองวันพิเศษนี้ร่วมกับคุณ" },
+      day: { en: "TIME LINE", th: "ลำดับช่วงเวลา" },
+      time1: { en: "8:08 AM", th: "08:08 น." },
+      time2: { en: "9:09 AM", th: "09:09 น." },
+      time3: { en: "6:30 PM", th: "18:30 น." },
+      guestArrival: { en: "Khan Maak Procession", th: "พิธีแห่ขันหมาก" },
+      welcome: { en: "Welcome, mingle & settle in.", th: "ต้อนรับ พูดคุย และเตรียมพร้อมสำหรับช่วงเวลาพิเศษ" },
+      ceremony: { en: "Wedding Ceremony", th: "พิธีแต่งงาน" },
+      foreverBegins: { en: "The moment our forever begins.", th: "ช่วงเวลาที่คำว่า “ตลอดไป” ของเราเริ่มต้นขึ้น" },
+      dinner: { en: "Dinner & Celebration", th: "งานเลี้ยงและการเฉลิมฉลอง" },
+      goodFood: { en: "Good food, music & celebration.", th: "อาหารอร่อย เสียงเพลง และช่วงเวลาแห่งความสุข" },
+      endOfEvening: { en: "End of the Evening", th: "ส่งท้ายค่ำคืน" },
+      allDay: { en: "All day long", th: "ตลอดทั้งวัน" },
+      nextMemory: { en: "Until our next beautiful memory.", th: "แล้วพบกันอีกครั้งในความทรงจำดี ๆ ครั้งต่อไป" },
+      dressCode: { en: "Dress code", th: "การแต่งกาย" },
+      dressTitle: { en: "Elegant Earth Tones.", th: "โทนเอิร์ธโทนเรียบหรู" },
+      dressLead: { en: "We would love for our guests to dress in warm, neutral and earthy tones.", th: "ขอเชิญแขกทุกท่านแต่งกายในโทนสีอบอุ่น สุภาพ และเป็นธรรมชาติ" },
+      dressNote: { en: "Formal / Semi-formal · Comfortable elegance", th: "สุภาพ / กึ่งทางการ · เรียบหรูและสบาย" },
+      beforeDay: { en: "Before the big day", th: "ก่อนถึงวันสำคัญ" },
+      hopeThere: { en: "We hope you'll be there.", th: "เราหวังว่าจะได้พบคุณในวันสำคัญของเรา" },
+      rsvpLead: { en: "Your presence would make our celebration even more meaningful. Please let us know if you can join us.", th: "การมีคุณร่วมอยู่ในวันพิเศษนี้จะทำให้การเฉลิมฉลองของเรามีความหมายยิ่งขึ้น กรุณาแจ้งให้เราทราบว่าคุณสามารถมาร่วมงานได้หรือไม่" },
+      viewLocation: { en: "View Location", th: "ดูสถานที่จัดงาน" },
+      rsvp: { en: "RSVP", th: "ยืนยันการเข้าร่วมงาน" },
+      calendar: { en: "Add to Calendar", th: "เพิ่มลงในปฏิทิน" },
+      hashtag: { en: "Our hashtag", th: "แฮชแท็กของเรา" },
+      thankYou: { en: "Thank you", th: "ขอบคุณ" },
+      farewellTitle: { en: "Thank you for<br>being part of our story.", th: "ขอบคุณที่<br>เป็นส่วนหนึ่งในเรื่องราวของเรา" },
+      farewellLead: { en: "Thank you for celebrating this beautiful beginning with us. We look forward to making memories together.", th: "ขอบคุณที่มาร่วมเฉลิมฉลองจุดเริ่มต้นอันงดงามนี้ไปกับเรา เรารอคอยที่จะได้สร้างความทรงจำดี ๆ ร่วมกัน" },
+      footer: { en: "Dao & Ian · April 5, 2027 · Phatthalung, Thailand", th: "ดาว & เอียน · 5 เมษายน 2570 · พัทลุง ประเทศไทย" }
+    };
+
+    const buttons = document.querySelectorAll('[data-lang]');
+
+    function setLanguage(lang, save = true) {
+      if (!translations || !['en', 'th'].includes(lang)) return;
+
+      document.body.classList.add('language-changing');
+
+      requestAnimationFrame(() => {
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.dataset.i18n;
+          const translation = translations[key]?.[lang];
+          if (translation !== undefined) {
+            element.innerHTML = translation;
+          }
+        });
+
+        document.documentElement.lang = lang;
+
+        buttons.forEach((button) => {
+          const active = button.dataset.lang === lang;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+
+        if (save) {
+          try {
+            localStorage.setItem('weddingInvitationLanguage', lang);
+          } catch (error) {
+            // localStorage may be unavailable in some browser/privacy modes.
+          }
+        }
+
+        setTimeout(() => {
+          document.body.classList.remove('language-changing');
+        }, 180);
+      });
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => setLanguage(button.dataset.lang));
+    });
+
+    let initialLanguage = 'en';
+    try {
+      const savedLanguage = localStorage.getItem('weddingInvitationLanguage');
+      if (savedLanguage === 'th' || savedLanguage === 'en') {
+        initialLanguage = savedLanguage;
+      }
+    } catch (error) {
+    }
+
+    setLanguage(initialLanguage, false);
+  </script>
+</body>
+
+</html>
